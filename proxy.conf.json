@@ -1,0 +1,6 @@
+{
+	"/api":{
+		"target": "https://pavanprasad.herokuapp.com",
+		"secure": false
+	}
+}

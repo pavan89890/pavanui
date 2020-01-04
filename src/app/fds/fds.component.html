@@ -1,0 +1,132 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Fds
+        
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Fds</h3>
+            <span class="pull-right">
+                <span class="label label-info">{{totalDeposited}} / {{totalMatured}}</span>
+                &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+                    (click)="edit(null)">Add</button>
+            </span>
+
+        </div>
+
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-bordered" id="fdsTableId">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Bank</th>
+                        <th>Amount</th>
+                        <th>ROI</th>
+                        <th>Matured</th>
+                        <th>Deposited On</th>
+                        <th>Period</th>
+                        <th>Matured On</th>
+                        <th>Remaining</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fd of fds;let sn=index">
+                        <td>{{sn+1}}</td>
+                        <td>{{fd.bank}}</td>
+                        <td>{{fd.depAmount}}</td>
+                        <td>{{fd.roi}}</td>
+                        <td>{{fd.maturedAmount}}</td>
+                        <td>{{fd.depositedOnStr}}</td>
+                        <td>{{fd.periodInMonths}}</td>
+                        <td>{{fd.maturedOnStr}}</td>
+                        <td>{{fd.remainingTime}}</td>
+                        <td><i class="glyphicon glyphicon-edit" (click)="edit(fd)" title="Update" data-toggle="modal"
+                                data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(fd.id)"
+                                title="Delete"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        <ng-container *ngIf="fd.id">Update FD</ng-container>
+                        <ng-container *ngIf="!fd.id">Add FD</ng-container>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" #form="ngForm" novalidate>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="bank">Select Bank:</label>
+                                <select class="form-control" id="bank" name="fd.bank" [(ngModel)]="fd.bank"
+                                    #bankVal="ngModel" required>
+                                    <option value="undefined">--Select Bank--</option>
+                                    <option value='kcbs'>kcbs</option>
+                                </select>
+                                <p class="text-danger" *ngIf="(bankVal.touched || bankVal.dirty) &&  bankVal.invalid">
+                                    Please
+                                    select bank</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="depAmount">Amount:</label>
+                            <input type="number" class="form-control" id="depAmount" placeholder="Enter amount"
+                                name="fd.depAmount" [(ngModel)]="fd.depAmount" #amountVal="ngModel" required>
+                            <p class="text-danger" *ngIf="(amountVal.touched || amountVal.dirty) &&  amountVal.invalid">
+                                Please
+                                enter amount</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="roi">ROI:</label>
+                            <input type="number" class="form-control" id="roi" placeholder="Enter roi" name="fd.roi"
+                                [(ngModel)]="fd.roi" #roiVal="ngModel" required>
+                            <p class="text-danger" *ngIf="(roiVal.touched || roiVal.dirty) &&  roiVal.invalid">Please
+                                enter
+                                roi</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="depositedOnStr">Deposited On:</label>
+                            <input type="date" class="form-control" id="depositedOnStr" placeholder="Select Deposited On"
+                                name="fd.depositedOnStr" [(ngModel)]="fd.depositedOnStr" #depOnVal="ngModel" required>
+
+                                <p class="text-danger" *ngIf="(depOnVal.touched || depOnVal.dirty) &&  depOnVal.invalid">
+                                Please
+                                select Deposited On</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodInMonths">Period:</label>
+                            <input type="number" class="form-control" id="periodInMonths" placeholder="Enter period in months"
+                                name="fd.periodInMonths" [(ngModel)]="fd.periodInMonths" #periodVal="ngModel" required>
+                            <p class="text-danger" *ngIf="(periodVal.touched || periodVal.dirty) &&  periodVal.invalid">
+                                Please
+                                enter period</p>
+                        </div>
+                        <button type="button" class="btn btn-success" (click)="save(form)" [disabled]="form.invalid">
+                            <ng-container *ngIf="fd.id">Update</ng-container>
+                            <ng-container *ngIf="!fd.id">Add</ng-container>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

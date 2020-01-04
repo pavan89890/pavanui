@@ -1,0 +1,138 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Chits
+        
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Chits</h3>
+            &nbsp;<span class="label label-info">{{noOfChitsPaid+"/"+noOfChits+" M"}}</span> 
+            <span class="pull-right">
+                D <span class="label label-info">{{totalAmountPaid}}</span> M <span class="label label-info">{{totalChitAmount}}</span>
+                &nbsp;&nbsp;
+            <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+                (click)="edit(null)">Add</button>
+        </span>
+        </div>
+
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-bordered" id="chitsTableId">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Actual Amount</th>
+                        <th>Paid Amount</th>
+                        <th>Profit</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let chit of chits;let sn=index">
+                        <td>{{sn+1}}</td>
+                        <td>{{chit.monthStr}}</td>
+                        <td>{{chit.year}}</td>
+                        <td>{{chit.actualAmount}}</td>
+                        <td>{{chit.paidAmount}}</td>
+                        <td>{{chit.profit}}</td>
+                        <td><i class="glyphicon glyphicon-edit" (click)="edit(chit)" title="Update" data-toggle="modal"
+                                data-target="#myModal"></i><i class="glyphicon glyphicon-trash"
+                                (click)="delete(chit.id)" title="Delete"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        <ng-container *ngIf="chit.id">Update Chit</ng-container>
+                        <ng-container *ngIf="!chit.id">Add Chit</ng-container>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" #form="ngForm" novalidate>
+                        <div class="form-group">
+                            <label for="month">Select Month:</label>
+                            <select class="form-control" id="month" name="chit.month" [(ngModel)]="chit.month"
+                                #monthVal="ngModel" required>
+                                <option value="undefined">--Select Month--</option>
+                                <option value='1'>Janaury</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                            <p class="text-danger" *ngIf="(monthVal.touched || monthVal.dirty) &&  monthVal.invalid">
+                                Please
+                                select month</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Select Year:</label>
+                            <select class="form-control" id="year" name="chit.year" [(ngModel)]="chit.year"
+                                #yearVal="ngModel" required>
+                                <option value='undefined'>--Select Year--</option>
+                                <option value='2019'>2019</option>
+                                <option value='2020'>2020</option>
+                                <option value='2020'>2021</option>
+                                <option value='2020'>2022</option>
+                                <option value='2020'>2023</option>
+                                <option value='2020'>2024</option>
+                            </select>
+                            <p class="text-danger" *ngIf="(yearVal.touched || yearVal.dirty) &&  yearVal.invalid">Please
+                                select year</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="actualAmount">Actual Amount:</label>
+                            <input type="number" class="form-control" id="actualAmount"
+                                placeholder="Please Enter Actual Amount" name="chit.actualAmount"
+                                [(ngModel)]="chit.actualAmount" #actualAmountVal="ngModel" required value="6000">
+                            <p class="text-danger"
+                                *ngIf="(actualAmountVal.touched || actualAmountVal.dirty) &&  actualAmountVal.invalid">
+                                Please enter actual amount</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="paidAmount">Paid Amount:</label>
+                            <input type="number" class="form-control" id="paidAmount"
+                                placeholder="Please Enter Paid Amount" name="chit.paidAmount"
+                                [(ngModel)]="chit.paidAmount" #paidAmountVal="ngModel" required value="6000">
+                            <p class="text-danger"
+                                *ngIf="(paidAmountVal.touched || paidAmountVal.dirty) &&  paidAmountVal.invalid">Please
+                                enter paid amount</p>
+                        </div>
+                        <button type="button" class="btn btn-success" (click)="save(form)" [disabled]="form.invalid">
+                            <ng-container *ngIf="chit.id">Update</ng-container>
+                            <ng-container *ngIf="!chit.id">Add</ng-container>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
