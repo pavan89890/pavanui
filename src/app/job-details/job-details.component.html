@@ -26,6 +26,7 @@
                     <tr>
                         <th>S.No</th>
                         <th>Company Name</th>
+                        <th>Designation</th>
                         <th>DOJ</th>
                         <th>DOL</th>
                         <th>Experience</th>
@@ -33,9 +34,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let jobDetail of jobDetails;let sn=index">
+                    <tr *ngFor="let jobDetail of jobDetails;let sn=index" [class.text-muted]="!jobDetail.current">
                         <td>{{sn+1}}</td>
                         <td>{{jobDetail.company}}</td>
+                        <td>{{jobDetail.designation}}</td>
                         <td>{{jobDetail.dojStr}}</td>
                         <td>{{jobDetail.dolStr}}</td>
                         <td>{{jobDetail.experience}}</td>
@@ -74,6 +76,16 @@
                                 enter company name</p>
                         </div>
                         <div class="form-group">
+                            <label for="designation">Designation:</label>
+                            <input type="text" class="form-control" id="designation" placeholder="Enter designation"
+                                name="jobDetail.designation" [(ngModel)]="jobDetail.designation"
+                                #designationVal="ngModel" required>
+                            <p class="text-danger"
+                                *ngIf="(designationVal.touched || designationVal.dirty) &&  designationVal.invalid">
+                                Please
+                                enter designation</p>
+                        </div>
+                        <div class="form-group">
                             <label for="doj">DOJ:</label>
                             <input type="date" class="form-control" id="doj" placeholder="Select doj"
                                 name="jobDetail.doj" [(ngModel)]="jobDetail.dojStr" #dojVal="ngModel" required>
@@ -86,6 +98,12 @@
                             <input type="date" class="form-control" id="dol" placeholder="Select dol"
                                 name="jobDetail.dol" [(ngModel)]="jobDetail.dolStr">
 
+                        </div>
+                        <div class="form-group">
+                            <label for="current">Current:</label>
+                            <input type="checkbox" id="current" 
+                                name="jobDetail.current" [(ngModel)]="jobDetail.current">
+                            
                         </div>
                         <button type="button" class="btn btn-success" (click)="save(form)" [disabled]="form.invalid">
                             <ng-container *ngIf="jobDetail.id">Update</ng-container>

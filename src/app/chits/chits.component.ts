@@ -16,8 +16,9 @@ export class ChitsComponent implements OnInit {
   url:string="chits";
   noOfChits=36;
   noOfChitsPaid=0;
-  totalChitAmount:number=180000;
+  totalChitAmount:number=0;
   totalAmountPaid:number=0;
+  totalProfit:number=0;
 
   constructor(private apiService:ApiService) { 
     
@@ -47,6 +48,7 @@ export class ChitsComponent implements OnInit {
          this.noOfChitsPaid=this.chits.length;
          this.totalAmountPaid=response.data.totalDeposited;
          this.totalChitAmount=response.data.totalMatured;
+         this.totalProfit=response.data.totalProfit;
        }
      })
    }
