@@ -1,65 +1,24 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-      Assets
-      
-    </h1>
-  </section>
-  
   <!-- Main content -->
   <section class="content container-fluid">
-    <div class="box box-success">
-      <div class="box-header with-border">
-        <h3 class="box-title">Assets</h3>
-        <span class="pull-right">
-          <span class="label label-info">{{totalBalance}}</span>
-        </span>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-green">
+            <h3 class="widget-user-username">Assets<span class="pull-right badge bg-yellow"><strong>{{totalBalance}}</strong></span></h3>
+          </div>
+          <div class="box-footer no-padding">
+            <ul class="nav nav-stacked">
+              <li><a [routerLink]="'/banks'">Banks <span class="pull-right badge bg-blue">{{bankBalance}}</span></a></li>
+              <li><a [routerLink]="'/chits'">Chits <span class="pull-right badge bg-aqua">{{chitBalance}}</span></a></li>
+              <li><a [routerLink]="'/fds'">Fds <span class="pull-right badge bg-red">{{fdBalance}}</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.widget-user -->
       </div>
-  
-      <!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table 
-          class="table table-bordered" id="assetsTableId">
-          <thead>
-           <tr>
-              <th>S.No</th> 
-              <th>Name</th>
-              <th>Balance</th> 
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Banks</td>
-              <td>{{bankBalance}}</td>
-              <td><a class="btn btn-primary btn-sm" [routerLink]="'/banks'">View</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Chits</td>
-                <td>{{chitBalance}}</td>
-                <td><a class="btn btn-primary btn-sm" [routerLink]="'/chits'">View</a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Fds</td>
-                <td>{{fdBalance}}</td>
-                <td><a class="btn btn-primary btn-sm" [routerLink]="'/fds'">View</a></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Total</td>
-                <td><b>{{totalBalance}}</b></td>
-                <td></td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-  
-      <!-- /.box-body -->
     </div>
-  
   
     <!-- Modal -->
     

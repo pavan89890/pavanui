@@ -1,11 +1,3 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Job Details
-        
-    </h1>
-</section>
-
 <!-- Main content -->
 <section class="content container-fluid">
 
@@ -13,7 +5,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Job Details</h3>
             <span class="pull-right">
-              <span class="label label-info">{{totalExperience}}</span>
+              <span class="label label-success">{{totalExperience}}</span>
               &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                 (click)="edit(null)">Add</button>
             </span>
@@ -21,34 +13,27 @@
 
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
-            <table class="table table-bordered" id="jobDetailsTableId">
-                <thead>
-                    <tr>
-                        <th>S.No</th>
-                        <th>Company Name</th>
-                        <th>Designation</th>
-                        <th>DOJ</th>
-                        <th>DOL</th>
-                        <th>Experience</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let jobDetail of jobDetails;let sn=index" [class.text-muted]="!jobDetail.current">
-                        <td>{{sn+1}}</td>
-                        <td>{{jobDetail.company}}</td>
-                        <td>{{jobDetail.designation}}</td>
-                        <td>{{jobDetail.dojStr}}</td>
-                        <td>{{jobDetail.dolStr}}</td>
-                        <td>{{jobDetail.experience}}</td>
-                        <td><i class="glyphicon glyphicon-edit" (click)="edit(jobDetail)" title="Update"
-                                data-toggle="modal" data-target="#myModal"></i><i class="glyphicon glyphicon-trash"
-                                (click)="delete(jobDetail.id)" title="Delete"></i></td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="customwell well" *ngFor="let jobDetail of jobDetails;let sn=index" [class.text-muted]="!jobDetail.current">
+                        <div class="row" >
+                            <div class="col-md-12">
+                                <p><b>{{jobDetail.designation}}</b>
+                                    <i class="glyphicon glyphicon-trash pull-right"
+                                    (click)="delete(jobDetail.id)" title="Delete"></i>
+                                    <i class="glyphicon glyphicon-edit pull-right" (click)="edit(jobDetail)" title="Update"
+                                    data-toggle="modal" data-target="#myModal"></i>
+                                </p>
+                                <p>{{jobDetail.company}}</p>
+                                <p *ngIf="jobDetail.dolStr">{{jobDetail.dojStr}} to {{jobDetail.dolStr}}</p>
+                                <p *ngIf="!jobDetail.dolStr">{{jobDetail.dojStr}} to present</p>
+                                <p><span class="label" [class.label-success]="jobDetail.current" [class.label-default]="!jobDetail.current">{{jobDetail.experience}}</span></p>
+                            </div>
+                            
+                        </div>
+                    </div>
         </div>
     </div>
+
+    
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
