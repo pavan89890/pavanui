@@ -1,44 +1,45 @@
-<!-- Content Header (Page header) -->
 <!-- Main content -->
 <section class="content container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box box-widget widget-user-2">
-        <div class="widget-user-header bg-green">
-          <h4 class="widget-user-username">Banks
-            <button class="btn btn-xs btn-primary pull-right" style="margin-left: 5px;" data-toggle="modal"
-              data-target="#myModal" (click)="edit(null)">Add</button>
-            <span class="pull-right badge bg-yellow"><strong>{{totalBalance}}</strong></span>
-          </h4>
-        </div>
-        <table class="table table-bordered table-striped">
-          <tbody>
-            <tr>
-              <th style="width: 10px">#</th>
-              <th>Name</th>
-              <th style="width: 40px">Balance</th>
-              <th>Actions</th>
-            </tr>
-            <tr *ngFor="let bank of banks;let sn=index">
-              <td>{{sn+1}}</td>
-              <td>{{bank.name}}</td>
-              <td><span class="badge bg-green">{{bank.balance}}</span></td>
-              <td style="white-space: nowrap;">
-                <i class="glyphicon glyphicon-edit" (click)="edit(bank)" title="Update" data-toggle="modal"
-                  data-target="#myModal">
-                </i>
-                <i class="glyphicon glyphicon-trash" (click)="delete(bank.id)" title="Delete"></i>
-
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-
+  
+  <div class="box box-success">
+      <div class="box-header with-border">
+          <h3 class="box-title">Banks</h3>
+          
+          <span class="pull-right">
+              <span class="label label-success">{{totalBalance}}</span>
+              &nbsp;&nbsp;
+          <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+              (click)="edit(null)">Add</button>
+      </span>
       </div>
-      <!-- /.widget-user -->
-    </div>
+
+      <div class="box-body table-responsive no-padding">
+          <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Name</th>
+                  <th style="width: 40px">Balance</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let bank of banks;let sn=index">
+                  <td>{{sn+1}}</td>
+                  <td>{{bank.name}}</td>
+                  <td><span class="badge bg-green">{{bank.balance}}</span></td>
+                  <td style="white-space: nowrap;">
+                    <i class="glyphicon glyphicon-edit" (click)="edit(bank)" title="Update" data-toggle="modal"
+                      data-target="#myModal">
+                    </i>
+                    <i class="glyphicon glyphicon-trash" (click)="delete(bank.id)" title="Delete"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
   </div>
+            
 </section>
 
 

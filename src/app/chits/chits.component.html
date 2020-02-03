@@ -1,22 +1,14 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Chits
-        
-    </h1>
-</section>
-
 <!-- Main content -->
 <section class="content container-fluid">
 
     <div class="box box-success">
         <div class="box-header with-border">
             <h3 class="box-title">Chits</h3>
-            &nbsp;<span class="label label-info">{{noOfChitsPaid+"/"+noOfChits+" M"}}</span> 
+            &nbsp;<span class="label label-success">{{noOfChitsPaid+" / "+noOfChits+" M"}}</span> 
             <span class="pull-right">
-                D <span class="label label-info">{{totalAmountPaid}}</span> M <span class="label label-info">{{totalChitAmount}}</span>
+                <span class="label label-success">{{totalAmountPaid}} / {{totalChitAmount}}</span>
                 &nbsp;&nbsp;
-                P <span class="label label-info">{{totalProfit}}</span>
+                P <span class="label label-success">{{totalProfit}}</span>
                 &nbsp;&nbsp;
             <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                 (click)="edit(null)">Add</button>
@@ -27,7 +19,7 @@
             <table class="table table-bordered table-striped" id="chitsTableId">
                 <thead>
                     <tr>
-                        <th>S.No</th>
+                        <th>#</th>
                         <th>Month</th>
                         <th>Year</th>
                         <th>Actual</th>

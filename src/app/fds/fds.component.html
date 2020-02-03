@@ -1,11 +1,3 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Fds
-        
-    </h1>
-</section>
-
 <!-- Main content -->
 <section class="content container-fluid">
 
@@ -13,50 +5,33 @@
         <div class="box-header with-border">
             <h3 class="box-title">Fds</h3>
             <span class="pull-right">
-                <span class="label label-info">{{totalDeposited}} / {{totalMatured}}</span>
+                <span class="label label-success">{{totalDeposited}} / {{totalMatured}}</span>
                 &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                     (click)="edit(null)">Add</button>
             </span>
 
         </div>
 
-        <div class="box-body table-responsive no-padding">
-            <table class="table table-bordered table-striped" id="fdsTableId">
-                <thead>
-                    <tr>
-                        <th>S.No</th>
-                        <th>Bank</th>
-                        <th>Amount</th>
-                        <th>ROI</th>
-                        <th>Matured</th>
-                        <th>Deposited On</th>
-                        <th>Period</th>
-                        <th>Matured On</th>
-                        <th>Remaining</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let fd of fds;let sn=index">
-                        <td>{{sn+1}}</td>
-                        <td>{{fd.bank}}</td>
-                        <td>{{fd.depAmount}}</td>
-                        <td>{{fd.roi}}</td>
-                        <td>{{fd.maturedAmount}}</td>
-                        <td>{{fd.depositedOnStr}}</td>
-                        <td>{{fd.periodInMonths}}</td>
-                        <td>{{fd.maturedOnStr}}</td>
-                        <td>{{fd.remainingTime}}</td>
-                        <td><i class="glyphicon glyphicon-edit" (click)="edit(fd)" title="Update" data-toggle="modal"
-                                data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(fd.id)"
-                                title="Delete"></i></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="box-body">
+            <div class="customwell well" *ngFor="let fd of fds;let sn=index">
+                <div class="row" >
+                    <div class="col-md-12">
+                        <p><b>{{sn+1}}) {{fd.bank}}</b>
+                            <i class="glyphicon glyphicon-trash pull-right"
+                            (click)="delete(fd.id)" title="Delete"></i>
+                            <i class="glyphicon glyphicon-edit pull-right" (click)="edit(fd)" title="Update"
+                            data-toggle="modal" data-target="#myModal"></i>
+                        </p>
+                        <p>Rs.{{fd.depAmount}} to Rs.{{fd.maturedAmount}} ( {{fd.roi}} % )</p>
+                        <p>{{fd.depositedOnStr}} to {{fd.maturedOnStr}} ( {{fd.periodInMonths}} months )</p>
+                        <p><span class="label label-success">{{fd.remainingTime}}</span></p>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </div>
-
-
+</section>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -128,5 +103,3 @@
 
         </div>
     </div>
-
-</section>

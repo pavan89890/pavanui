@@ -12,7 +12,7 @@
         </div>
 
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
+        <div class="box-body">
                 <div class="customwell well" *ngFor="let jobDetail of jobDetails;let sn=index" [class.text-muted]="!jobDetail.current">
                         <div class="row" >
                             <div class="col-md-12">
@@ -32,9 +32,7 @@
                     </div>
         </div>
     </div>
-
-    
-
+</section>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -100,5 +98,3 @@
 
         </div>
     </div>
-
-</section>
