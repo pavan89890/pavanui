@@ -25,14 +25,14 @@
         <div class="customwell well">
             <div class="row">
               <div class="col-md-12">
-                <p><b>Gogu Eswara Pavan Prasad</b>
+                <p><b>{{data.name}}</b>
                   <i class="glyphicon glyphicon-trash pull-right" title="Delete"></i>
                   <i class="glyphicon glyphicon-edit pull-right" data-toggle="modal" data-target="#myModal"></i>
                 </p>
-                <p>17-09-1991</p>
-                <p><span class="label label-success">28 Years, 0 Months, 0 Days</span></p>
-                <p class="text-muted">17-07-1993</p>
-                <p><span class="label label-default">26 Years, 0 Months, 0 Days</span></p>
+                <p>{{data.oriDobStr}}</p>
+                <p><span class="label label-success">{{data.oriAgeStr}}</span></p>
+                <p class="text-muted">{{data.cerDobStr}}</p>
+                <p><span class="label label-default">{{data.cerAgeStr}}</span></p>
               </div>
             </div>
           </div>
