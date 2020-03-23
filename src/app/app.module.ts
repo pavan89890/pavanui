@@ -21,6 +21,7 @@ import { FdsComponent } from './fds/fds.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { AssetsComponent } from './assets/assets.component';
+import { DownloadDataComponent } from './download-data/download-data.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AssetsComponent } from './assets/assets.component';
     FdsComponent,
     JobDetailsComponent,
     ExpenseComponent,
-    AssetsComponent
+    AssetsComponent,
+    DownloadDataComponent
   ],
   imports: [
     BrowserModule,

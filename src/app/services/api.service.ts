@@ -10,8 +10,8 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
  
-   //backendUrl:string="http://localhost:8080/api/";
-   backendUrl:string="https://pavanprasad.herokuapp.com/api/";
+   backendUrl:string="http://localhost:8080/api/";
+   //backendUrl:string="https://pavanprasad.herokuapp.com/api/";
 
   getApiService(url:string):any{
     return this.http.get(this.backendUrl+url);
@@ -23,6 +23,10 @@ export class ApiService {
 
   deleteApiService(url:string):Observable<any>{
     return this.http.delete(this.backendUrl+url);
+  }
+
+  downloadApiService(url:string):any{
+    return this.http.get(this.backendUrl+url);
   }
 
 }

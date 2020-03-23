@@ -3,7 +3,7 @@
 
     <div class="box box-success">
         <div class="box-header with-border">
-            <h3 class="box-title">Fds</h3>
+            <h3 class="box-title">Fds <span *ngIf="fds" class="badge">{{fds.length}}</span></h3>
             <span class="pull-right">
                 <span class="label label-success">{{totalDeposited}} / {{totalMatured}}</span>
                 &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
