@@ -3,7 +3,7 @@
 
     <div class="box box-success">
         <div class="box-header with-border">
-            <h3 class="box-title">Job Details</h3>
+            <h3 class="box-title">Job Details  <span class="badge" *ngIf="jobDetails">{{jobDetails.length}}</span></h3>
             <span class="pull-right">
               <span class="label label-success">{{totalExperience}}</span>
               &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"

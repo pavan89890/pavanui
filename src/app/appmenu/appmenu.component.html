@@ -21,21 +21,21 @@
       <li class="header">Screens</li>
       <!-- Optionally, you can add icons to the links -->
       <li class="active"><a href=""><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      <li class=""><a [routerLink]="'expenses'"><i class="fa fa-rupee"></i> <span>Expenses</span></a></li>
-      <li class=""><a [routerLink]="'events'"><i class="fa fa-calendar"></i> <span>Events</span></a></li>
       <li class=""><a [routerLink]="'downloadData'"><i class="fa fa-file-excel-o"></i> <span>Download Data</span></a></li>
+      <li class=""><a [routerLink]="'events'"><i class="fa fa-calendar"></i> <span>Events</span></a></li>
+      <li class=""><a [routerLink]="'expenses'"><i class="fa fa-rupee"></i> <span>Expenses</span></a></li>
+      <li class=""><a [routerLink]="'job-details'"><i class="fa fa-briefcase"></i> <span>Job Details</span></a></li>
       <li class="treeview">
-        <a href="#"><i class="fa fa-edit"></i> <span>Forms</span>
+        <a><i class="fa fa-edit"></i> <span>Budgets</span>
           <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
           <li><a [routerLink]="'assets'">Assets</a></li>
-          <li><a [routerLink]="'job-details'">Job Details</a></li>
           <li><a [routerLink]="'banks'">Banks</a></li>
-          <li><a [routerLink]="'fds'">Fds</a></li>
           <li><a [routerLink]="'chits'">Chits</a></li>
+          <li><a [routerLink]="'fds'">Fds</a></li>
         </ul>
       </li>
    </ul>
