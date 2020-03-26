@@ -10,6 +10,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { AssetsComponent } from './assets/assets.component';
 import { DownloadDataComponent } from './download-data/download-data.component';
+import { EventsComponent } from './events/events.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'chits' , component: ChitsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'fds' , component: FdsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'expenses' , component: ExpenseComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
+  {path: 'events' , component: EventsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'downloadData' , component: DownloadDataComponent,pathMatch: 'full' , canActivate: [AuthGuard]}
 ];
 

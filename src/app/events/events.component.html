@@ -1,0 +1,111 @@
+<!-- Main content -->
+<section class="content container-fluid">
+  
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Events</h3>
+            
+            <span class="pull-right">
+                <span class="label label-success" *ngIf="events">{{events.length}}</span>
+                &nbsp;&nbsp;
+            <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+                (click)="edit(null)">Add</button>
+        </span>
+        </div>
+  
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Event Type</th>
+                    <th>Event Name</th>
+                    <th>Event Description</th>
+                    <th>Event Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let event of events;let sn=index">
+                    <td>{{sn+1}}</td>
+                    <td>{{event.eventType}}</td>
+                    <td>{{event.eventName}}</td>
+                    <td>{{event.eventDesc}}</td>
+                    <td>{{event.eventDateStr}}</td>
+                    <td style="white-space: nowrap;">
+                      <i class="glyphicon glyphicon-edit" (click)="edit(event)" title="Update" data-toggle="modal"
+                        data-target="#myModal">
+                      </i>
+                      <i class="glyphicon glyphicon-trash" (click)="delete(event.id)" title="Delete"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+              
+  </section>
+  
+  
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">
+            <ng-container *ngIf="event.id">Update Event</ng-container>
+            <ng-container *ngIf="!event.id">Add Event</ng-container>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <form autocomplete="off" #form="ngForm" novalidate>
+            <div class="form-group">
+                <label for="eventType">Select Event Type:</label>
+                <select class="form-control" id="eventType" name="event.eventType" [(ngModel)]="event.eventType"
+                    #eventTypeVal="ngModel" required>
+                    <option value="undefined">--Select Event Type--</option>
+                    <option value='Birthday'>Birthday</option>
+                    <option value='Wedding Anniversary'>Wedding Anniversary</option>
+                    <option value='Enguagement Anniversary'>Enguagement Anniversary</option>
+                    <option value='Other'>Other</option>
+                </select>
+                <p class="text-danger" *ngIf="(eventTypeVal.touched || eventTypeVal.dirty) &&  eventTypeVal.invalid">
+                    Please
+                    select event type</p>
+            </div>
+            <div class="form-group">
+              <label for="name">Event Name:</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter event name" name="event.eventName"
+                [(ngModel)]="event.eventName" #eventNameVal="ngModel" required>
+              <p class="text-danger" *ngIf="(eventNameVal.touched || eventNameVal.dirty) &&  eventNameVal.invalid">Please enter event name
+              </p>
+            </div>
+            <div class="form-group">
+                <label for="name">Event Description:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter event name" name="event.eventDesc"
+                    [(ngModel)]="event.eventDesc" #eventDescVal="ngModel" required>
+                <p class="text-danger" *ngIf="(eventDescVal.touched || eventDescVal.dirty) &&  eventDescVal.invalid">Please enter event description
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="depositedOnStr">Event Date:</label>
+                <input type="date" class="form-control" id="eventDateStr" placeholder="Select Event Date"
+                    name="event.eventDateStr" [(ngModel)]="event.eventDateStr" #eventDateStrVal="ngModel" required>
+
+                    <p class="text-danger" *ngIf="(eventDateStrVal.touched || eventDateStrVal.dirty) &&  eventDateStrVal.invalid">
+                    Please
+                    select event date</p>
+            </div>
+            <button type="button" class="btn btn-success" (click)="save(form)" [disabled]="form.invalid">
+              <ng-container *ngIf="event.id">Update</ng-container>
+              <ng-container *ngIf="!event.id">Add</ng-container>
+            </button>
+          </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>

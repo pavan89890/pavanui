@@ -22,6 +22,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { AssetsComponent } from './assets/assets.component';
 import { DownloadDataComponent } from './download-data/download-data.component';
+import { EventsComponent } from './events/events.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DownloadDataComponent } from './download-data/download-data.component';
     JobDetailsComponent,
     ExpenseComponent,
     AssetsComponent,
-    DownloadDataComponent
+    DownloadDataComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
