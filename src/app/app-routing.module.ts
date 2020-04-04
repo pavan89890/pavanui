@@ -11,6 +11,7 @@ import { ExpenseComponent } from './expense/expense.component';
 import { AssetsComponent } from './assets/assets.component';
 import { DownloadDataComponent } from './download-data/download-data.component';
 import { EventsComponent } from './events/events.component';
+import { TodosComponent } from './todos/todos.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'fds' , component: FdsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'expenses' , component: ExpenseComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'events' , component: EventsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
-  {path: 'downloadData' , component: DownloadDataComponent,pathMatch: 'full' , canActivate: [AuthGuard]}
+  {path: 'appdata' , component: DownloadDataComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
+  {path: 'todos' , component: TodosComponent,pathMatch: 'full' , canActivate: [AuthGuard]}
 ];
 
 @NgModule({

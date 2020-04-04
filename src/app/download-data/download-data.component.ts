@@ -11,15 +11,15 @@ export class DownloadDataComponent implements OnInit {
   constructor(private apiService:ApiService) { }
 
   msg:string="";
-  url:string="downloaddata";
+  url:string="data/";
 
   ngOnInit() {
-    this.downloadExcelData();
+    
   }
 
-  downloadExcelData(){
+  downloadData(){
     this.msg="Please wait...";
-    this.apiService.downloadApiService(this.url).subscribe(
+    this.apiService.downloadApiService(this.url+'download').subscribe(
       (success: any) => {
         var blob = new Blob([success._body], { type: 'application/vnd.ms-excel' });
         let fileName="PavanPrasadData";
@@ -38,6 +38,16 @@ export class DownloadDataComponent implements OnInit {
         alert("Error while downloading. File Not Found on the Server");
       }
     );
+    this.msg="";
+  }
+
+  mailData(){
+    this.msg="Please wait...";
+    this.apiService.getApiService(this.url+"/mail").subscribe(response=>{
+      if(response.message){
+        alert(response.message);
+      }
+    });
     this.msg="";
   }
 
