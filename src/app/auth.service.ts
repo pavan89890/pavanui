@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   isLoggednIn() {
-    return this.getToken() !== null && this.getToken()=="pavan";
+    return this.getToken() !== null;
   }
 
   logout() {

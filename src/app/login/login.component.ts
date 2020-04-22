@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ApiService } from '../services/api.service';
 declare var $: any;
 
 @Component({
@@ -12,10 +13,14 @@ declare var $: any;
 export class LoginComponent implements OnInit {
 
   form;
+
   isValidUser:boolean=true;
+  url:string="login";
+
   constructor(private fb: FormBuilder,
     private myRoute: Router,
-    private auth: AuthService) {
+    private auth: AuthService,
+    private apiService:ApiService) {
       this.form = fb.group({
         username: ['', [Validators.required]],
         password: ['', Validators.required]
@@ -25,13 +30,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     $("body").removeClass('skin-purple sidebar-mini');
     $("body").css("background-color","#ecf0f5");
-    console.log(this.form);
   }
 
   login(){
-    if(this.form.valid && this.form.value.username=="pavan" && this.form.value.password=="java"){
-      this.auth.sendToken(this.form.value.username)
-      this.myRoute.navigate(["/dashboard"]);
+    if(this.form.valid){
+      this.apiService.getApiService(this.url+"?username="+this.form.value.username+"&password="+this.form.value.password).subscribe(response=>{
+        if(response.data){
+          this.auth.sendToken(response.data.email);
+          this.myRoute.navigate(["/dashboard"]);
+        }else{
+          alert(response.message);
+        }
+      });
     }else{
       this.isValidUser=false;
     }

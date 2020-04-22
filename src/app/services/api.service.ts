@@ -10,7 +10,7 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
  
-   //backendUrl:string="http://localhost:8080/api/";
+  //  backendUrl:string="http://localhost:8080/api/";
    backendUrl:string="https://pavanprasad.herokuapp.com/api/";
 
   getApiService(url:string):any{

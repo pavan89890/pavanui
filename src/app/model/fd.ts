@@ -1,6 +1,7 @@
 export class Fd {
     public id:string;
     public bank:string;
+    public fdrNo:string;
     public depAmount:number;
     public roi:number;
     public matAmount:number;

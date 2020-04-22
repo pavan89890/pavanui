@@ -16,7 +16,7 @@
             <div class="customwell well" *ngFor="let fd of fds;let sn=index">
                 <div class="row" >
                     <div class="col-md-12">
-                        <p><b>{{sn+1}}) {{fd.bank}}</b>
+                        <p><b>{{sn+1}}){{fd.bank}} <span *ngIf="fd.fdrNo">{{'- '+fd.fdrNo}}</span> </b>
                             <i class="glyphicon glyphicon-trash pull-right"
                             (click)="delete(fd.id)" title="Delete"></i>
                             <i class="glyphicon glyphicon-edit pull-right" (click)="edit(fd)" title="Update"
@@ -59,6 +59,11 @@
                                     Please
                                     select bank</p>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fdrNo">FDR NO:</label>
+                            <input type="text" class="form-control" id="fdrNo" placeholder="Enter FDR NO"
+                                name="fd.fdrNo" [(ngModel)]="fd.fdrNo" #fdrNoVal="ngModel" required>
                         </div>
                         <div class="form-group">
                             <label for="depAmount">Amount:</label>

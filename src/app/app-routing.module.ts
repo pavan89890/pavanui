@@ -12,12 +12,14 @@ import { AssetsComponent } from './assets/assets.component';
 import { DownloadDataComponent } from './download-data/download-data.component';
 import { EventsComponent } from './events/events.component';
 import { TodosComponent } from './todos/todos.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 const routes: Routes = [
   {path: '' ,component:DashboardComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path:"dashboard",component:DashboardComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'login' , component: LoginComponent},
+  {path: 'register' , component: RegistrationComponent},
   {path: 'assets' , component: AssetsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'job-details' , component: JobDetailsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'banks' , component: BanksComponent,pathMatch: 'full' , canActivate: [AuthGuard]},

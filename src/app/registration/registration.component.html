@@ -1,0 +1,51 @@
+<br>
+<section class="container">
+<div class="row">
+  <div class="col-md-6">
+
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Register</h3>
+    </div>
+    <div class="box-body table-responsive">
+
+      <div class="alert alert-danger" *ngIf="!isValidForm">Please Enter Valid Details</div>
+      <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+
+      <form [formGroup]="form" (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+          <p *ngIf="form.controls.name.touched && form.controls.name.errors" class="text-danger">Please Enter
+            Name</p>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <p *ngIf="form.controls.email.touched && form.controls.email.errors" class="text-danger">Please Enter
+              Email</p>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="number" class="form-control" id="mobile" formControlName="mobile">
+            <p *ngIf="form.controls.mobile.touched && form.controls.mobile.errors" class="text-danger">Please Enter
+              Mobile</p>
+          </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="password" formControlName="password" maxlength="8">
+          <p *ngIf="form.controls.password.touched && form.controls.password.errors" class="text-danger">Please Enter
+            Password</p>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">Register</button>
+      </form>
+      <br>
+      <p>Already Registered ! </p>
+      <a [routerLink]="'/login'">Click here to login</a>
+
+    </div>
+
+  </div>
+</div>
+  </div>
+</section>
