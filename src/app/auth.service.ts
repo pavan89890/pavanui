@@ -9,11 +9,11 @@ export class AuthService {
   constructor(private router:Router) { }
 
   sendToken(token: string) {
-    localStorage.setItem("currentUser", token)
+    localStorage.setItem("userToken", token)
   }
 
   getToken() {
-    return localStorage.getItem("currentUser");
+    return localStorage.getItem("userToken");
   }
 
   isLoggednIn() {
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("userToken");
     this.router.navigate(['/login']);
   }
 }

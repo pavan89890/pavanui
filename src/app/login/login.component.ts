@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.form.valid){
-      this.apiService.getApiService(this.url+"?username="+this.form.value.username+"&password="+this.form.value.password).subscribe(response=>{
+      this.apiService.postApiService(this.url,{"username":this.form.value.username,"password":this.form.value.password}).subscribe(response=>{
         if(response.data){
-          this.auth.sendToken(response.data.email);
+          this.auth.sendToken(response.data.userToken);
           this.myRoute.navigate(["/dashboard"]);
         }else{
           alert(response.message);

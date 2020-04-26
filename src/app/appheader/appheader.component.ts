@@ -17,7 +17,7 @@ export class AppheaderComponent implements OnInit {
   }
 
   signOut(){
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("userToken");
     this.router.navigateByUrl("/login");
   }
 
