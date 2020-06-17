@@ -12,4 +12,5 @@ export class Fd {
     public rem:any;
     public createdOn:Date;
     public updatedOn:Date;
+    public profit:number;
 }

@@ -16,6 +16,7 @@ export class FdsComponent implements OnInit {
   url:string="fds";
   totalDeposited:number=0;
   totalMatured:number=0;
+  totalProfit:number=0;
 
   constructor(private apiService:ApiService) {
     
@@ -45,6 +46,7 @@ export class FdsComponent implements OnInit {
          this.fds=response.data.fds;
          this.totalDeposited=response.data.totalDeposited;
          this.totalMatured=response.data.totalMatured;
+         this.totalProfit=response.data.totalProfit;
        }
      })
    }

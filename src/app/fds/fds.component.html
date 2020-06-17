@@ -5,7 +5,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">Fds <span *ngIf="fds" class="badge">{{fds.length}}</span></h3>
             <span class="pull-right">
-                <span class="label label-success">{{totalDeposited}} / {{totalMatured}}</span>
+                <span class="label label-success">{{totalDeposited}} to {{totalMatured}}</span>
+                &nbsp; &nbsp;<span class="label label-success">{{totalProfit}}</span>
                 &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                     (click)="edit(null)">Add</button>
             </span>
@@ -22,7 +23,7 @@
                             <i class="glyphicon glyphicon-edit pull-right" (click)="edit(fd)" title="Update"
                             data-toggle="modal" data-target="#myModal"></i>
                         </p>
-                        <p>Rs.{{fd.depAmount}} to Rs.{{fd.maturedAmount}} ( {{fd.roi}} % )</p>
+                        <p>Rs.{{fd.depAmount}} to Rs.{{fd.maturedAmount}} ( {{fd.profit}} @ {{fd.roi}} % )</p>
                         <p>{{fd.depositedOnStr}} to {{fd.maturedOnStr}} ( {{fd.periodInMonths}} months )</p>
                         <p><span class="label label-success">{{fd.remainingTime}}</span></p>
                     </div>
