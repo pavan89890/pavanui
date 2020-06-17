@@ -24,19 +24,19 @@ export class ApiService {
   postApiService(url:string,data:any):any{
     let headers = new HttpHeaders;
     headers = headers.set('userToken',this.userToken );
-    return this.http.post(this.backendUrl+url,data);
+    return this.http.post(this.backendUrl+url,data,{headers});
   }
 
   deleteApiService(url:string):Observable<any>{
     let headers = new HttpHeaders;
     headers = headers.set('userToken',this.userToken );
-    return this.http.delete(this.backendUrl+url);
+    return this.http.delete(this.backendUrl+url,{headers});
   }
 
   downloadApiService(url:string):any{
     let headers = new HttpHeaders;
     headers = headers.set('userToken',this.userToken );
-    return this.http.get(this.backendUrl+url);
+    return this.http.get(this.backendUrl+url,{headers});
   }
 
 }
