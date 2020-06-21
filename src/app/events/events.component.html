@@ -3,16 +3,28 @@
 
   <div class="box box-success">
     <div class="box-header with-border">
-      <h3 class="box-title">Events</h3>
-
-      <span class="pull-right">
-        <span class="label label-success" *ngIf="events">{{events.length}}</span>
+      <h3 class="box-title">Events
         &nbsp;&nbsp;
+      <span class="label label-success" *ngIf="events">{{events.length}}</span>
+     </h3>
+      <span class="pull-right">
         <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
           (click)="edit(null)">Add</button>
       </span>
     </div>
-
+    <br>
+    <div class="row">
+      <div class="col-md-12"><div class="col-md-4">
+              <select class="form-control" id="eventTypeFilter" #eventTypeFilter (change)="get(eventTypeFilter.value)">
+              <option value="All">All</option>
+              <option value='Birthday'>Birthday</option>
+              <option value='Wedding Anniversary'>Wedding Anniversary</option>
+              <option value='Enguagement Anniversary'>Enguagement Anniversary</option>
+              <option value='Other'>Other</option>
+            </select>
+      </div></div>
+    </div>
+    <!-- /.box-header --><br>
     <div class="box-body table-responsive no-padding">
       <table class="table table-bordered table-striped">
         <thead>

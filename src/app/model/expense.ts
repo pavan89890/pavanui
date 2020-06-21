@@ -1,5 +1,6 @@
 export class Expense {
     public id:string;
+    public expenseType:string;
     public name:string;
     public amount:number;
     public createdOn:Date;

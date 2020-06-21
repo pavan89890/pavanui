@@ -3,7 +3,9 @@
   
   <div class="box box-success">
       <div class="box-header with-border">
-          <h3 class="box-title">Banks</h3>
+          <h3 class="box-title">Banks
+            &nbsp;&nbsp;
+          <span class="label label-success" *ngIf="banks">{{banks.length}}</span></h3>
           
           <span class="pull-right">
               <span class="label label-success">{{totalBalance}}</span>

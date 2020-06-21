@@ -18,7 +18,7 @@ export class EventsComponent implements OnInit {
   events: Events[] = [];
 
   ngOnInit() {
-   this.get();
+   this.get("");
   }
   
   edit(event: Events) {
@@ -30,8 +30,12 @@ export class EventsComponent implements OnInit {
 
   }
 
-  get(){
-    this.apiService.getApiService(this.url).subscribe(response=>{
+  get(eventType:string){
+    var urlVal = this.url;
+    if (eventType && eventType != "All") {
+      urlVal = this.url + "?eventType=" + eventType;
+    }
+    this.apiService.getApiService(urlVal).subscribe(response=>{
       this.events=[];
       if(response.data){
         this.events=response.data.events;
@@ -43,7 +47,7 @@ export class EventsComponent implements OnInit {
     this.apiService.postApiService(this.url, this.event).subscribe(response=>{
       alert(response.message);
       form.resetForm();
-      this.get();
+      this.get("");
     });
     
   }
@@ -52,7 +56,7 @@ export class EventsComponent implements OnInit {
     if (confirm("Are you sure you want to delete?")) {
       this.apiService.deleteApiService(this.url+"/"+id).subscribe(response=>{
         alert(response.message);
-        this.get();
+        this.get("");
       });
     }
   }

@@ -2,21 +2,39 @@
 <section class="content container-fluid">
   <div class="box box-success">
     <div class="box-header with-border">
-      <h3 class="box-title">Expenses</h3>
+      <h3 class="box-title">Expenses
+        &nbsp;&nbsp;
+      <span class="label label-success" *ngIf="expenses">{{expenses.length}}</span>
+      </h3>
       <span class="pull-right">
         <span class="label label-success">{{totalExpenses}}</span>
         &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
           (click)="edit(null)">Add</button>
       </span>
     </div>
-
-    <!-- /.box-header -->
+    <br>
+    <div class="row">
+      <div class="col-md-12"><div class="col-md-4">
+              <select class="form-control" id="expenseTypeFilter" #expenseTypeFilter (change)="get(expenseTypeFilter.value)">
+              <option value="All">All</option>
+              <option value='Personal'>Personal</option>
+              <option value='Credit'>Credit</option>
+              <option value='Debit'>Debit</option>
+              <option value="Gift">Gift</option>
+              <option value='Enguagement'>Enguagement</option>
+              <option value='Marriage'>Marriage</option>
+              <option value='Other'>Other</option>
+            </select>
+      </div></div>
+    </div>
+    <!-- /.box-header --><br>
     <div class="box-body table-responsive no-padding">
       <table 
         class="table table-bordered table-striped" id="ExpensesTableId">
         <thead>
          <tr>
             <th>S.No</th> 
+            <th>Type</th>
             <th>Name</th>
             <th>Amount</th> 
             <th>Date</th>
@@ -26,6 +44,7 @@
         <tbody>
           <tr *ngFor="let expense of expenses;let sn=index">
             <td>{{sn+1}}</td>
+            <td>{{expense.expenseType}}</td>
             <td>{{expense.name}}</td>
             <td>{{expense.amount}}</td>
             <td>{{expense.expenseDateStr}}</td>
@@ -56,6 +75,21 @@
         </div>
         <div class="modal-body">
           <form autocomplete="off" #form="ngForm" novalidate>
+            <div class="form-group">
+              <label for="expenseType">Expense Type:</label>
+              <select class="form-control" id="expenseType" name="expense.expenseType" [(ngModel)]="expense.expenseType"
+              #expenseTypeVal="ngModel" required>
+              <option value="undefined">--Select Expense Type--</option>
+              <option value='Personal'>Personal</option>
+              <option value='Credit'>Credit</option>
+              <option value='Enguagement'>Enguagement</option>
+              <option value='Marriage'>Marriage</option>
+              <option value='Other'>Other</option>
+            </select>
+            <p class="text-danger" *ngIf="(expenseTypeVal.touched || expenseTypeVal.dirty) &&  expenseTypeVal.invalid">
+              Please
+              select event type</p>
+            </div>
             <div class="form-group">
               <label for="name">Name:</label>
               <input type="text" class="form-control" id="name" placeholder="Enter name" name="expense.name"

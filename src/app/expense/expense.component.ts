@@ -18,9 +18,9 @@ export class ExpenseComponent implements OnInit {
   totalExpenses: number = 0;
 
   ngOnInit() {
-   this.get();
+    this.get("");
   }
-  
+
   edit(expense: Expense) {
     if (expense) {
       this.expense = expense;
@@ -30,31 +30,36 @@ export class ExpenseComponent implements OnInit {
 
   }
 
-  get(){
-    this.apiService.getApiService(this.url).subscribe(response=>{
-      this.expenses=[];
-      this.totalExpenses=0;
-      if(response.data){
-        this.expenses=response.data.expenses;
-        this.totalExpenses=response.data.totalExpenses;
+  get(expenseType: string) {
+    var urlVal = this.url;
+    if (expenseType && expenseType != "All") {
+      urlVal = this.url + "?expenseType=" + expenseType;
+    }
+    this.apiService.getApiService(urlVal).subscribe(response => {
+      this.expenses = [];
+      this.totalExpenses = 0;
+      if (response.data) {
+        this.expenses = response.data.expenses;
+        this.totalExpenses = response.data.totalExpenses;
       }
     })
+    
   }
 
   save(form: NgForm) {
-    this.apiService.postApiService(this.url, this.expense).subscribe(response=>{
+    this.apiService.postApiService(this.url, this.expense).subscribe(response => {
       alert(response.message);
       form.resetForm();
-      this.get();
+      this.get("");
     });
-    
+
   }
 
   delete(id: any) {
     if (confirm("Are you sure you want to delete?")) {
-      this.apiService.deleteApiService(this.url+"/"+id).subscribe(response=>{
+      this.apiService.deleteApiService(this.url + "/" + id).subscribe(response => {
         alert(response.message);
-        this.get();
+        this.get("");
       });
     }
   }
