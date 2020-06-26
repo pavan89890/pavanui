@@ -17,9 +17,10 @@ export class DashboardComponent implements OnInit {
      }
      
      get(){
-       this.apiService.getApiService(this.url).subscribe(response=>{
+       var userToken=localStorage.getItem('userToken');
+       this.apiService.getApiService(this.url+"/userToken/"+userToken).subscribe(response=>{
          if(response.data){
-           this.data=response.data[0];
+           this.data=response.data;
          }
        })
      }
