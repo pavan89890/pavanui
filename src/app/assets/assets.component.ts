@@ -17,6 +17,7 @@ export class AssetsComponent implements OnInit {
   bankBalance:number=0;
   chitBalance:number=0;
   fdBalance:number=0;
+  mfBalance:number=0;
   totalBalance:number=0;
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class AssetsComponent implements OnInit {
         this.bankBalance=response.data.bankBalance;
         this.chitBalance=response.data.chitBalance;
         this.fdBalance=response.data.fdBalance;
+        this.mfBalance=response.data.mfBalance;
         this.totalBalance=response.data.totalBalance;
       }
     })

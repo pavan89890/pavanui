@@ -1,0 +1,103 @@
+<!-- Main content -->
+<section class="content container-fluid">
+
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Mutual Funds <span *ngIf="mutualfunds" class="badge">{{mutualfunds.length}}</span></h3>
+            <span class="pull-right">
+                <span class="label label-success">{{totalInvested}} to {{totalCurrent}}</span>
+                &nbsp;&nbsp;<span class="label label-success">{{totalProfitprofitOrLossAmount}} @ {{totalProfitprofitOrLossPerc}}</span>
+                &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+                    (click)="edit(null)">Add</button>
+            </span>
+
+        </div>
+
+        <div class="box-body">
+            <div class="customwell well" *ngFor="let mutualfund of mutualfunds;let sn=index">
+                <span *ngIf="mutualfunds" class="badge">{{sn+1}}</span>
+                <div class="row" >
+                    <div class="col-md-12">
+                        <p><b><span *ngIf="mutualfund.name">{{mutualfund.name}}</span> </b>
+                            <i class="glyphicon glyphicon-trash pull-right"
+                            (click)="delete(mutualfund.id)" title="Delete"></i>
+                            <i class="glyphicon glyphicon-edit pull-right" (click)="edit(mutualfund)" title="Update"
+                            data-toggle="modal" data-target="#myModal"></i>
+                        </p>
+                        <p>{{mutualfund.desc}}</p>
+                        <p>{{mutualfund.depositedOnStr}}</p>
+                        <p>Rs.{{mutualfund.investedAmount}} to Rs.{{mutualfund.currentAmount}}</p>
+                        <p><span [ngClass]="(mutualfund.profitOrLossAmount>0)?'label label-success':'label label-danger'">{{mutualfund.profitOrLossAmount}} @ {{mutualfund.profitOrLossPerc}}  %</span></p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        <ng-container *ngIf="mutualfund.id">Update Mutual Fund</ng-container>
+                        <ng-container *ngIf="!mutualfund.id">Add Mutual Fund</ng-container>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" #form="ngForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name :</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Name"
+                                name="mutualfund.name" [(ngModel)]="mutualfund.name" #nameVal="ngModel" required>
+                                <p class="text-danger" *ngIf="(nameVal.touched || nameVal.dirty) &&  nameVal.invalid">
+                                    Please
+                                    enter name</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Description :</label>
+                            <input type="text" class="form-control" id="desc" placeholder="Enter Description"
+                                name="mutualfund.desc" [(ngModel)]="mutualfund.desc" #descVal="ngModel" required>
+                                <p class="text-danger" *ngIf="(descVal.touched || descVal.dirty) &&  descVal.invalid">
+                                    Please
+                                    enter description</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="investedAmount">Invested Amount:</label>
+                            <input type="number" class="form-control" id="investedAmount" placeholder="Enter Invested Amount"
+                                name="mutualfund.investedAmount" [(ngModel)]="mutualfund.investedAmount" #investedAmountVal="ngModel" required>
+                            <p class="text-danger" *ngIf="(investedAmountVal.touched || investedAmountVal.dirty) &&  investedAmountVal.invalid">
+                                Please
+                                enter invested amount</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentAmount">Current Amount:</label>
+                            <input type="number" class="form-control" id="currentAmount" placeholder="Enter Current Amount"
+                                name="mutualfund.currentAmount" [(ngModel)]="mutualfund.currentAmount" #currentAmountVal="ngModel" required>
+                            <p class="text-danger" *ngIf="(currentAmountVal.touched || currentAmountVal.dirty) &&  currentAmountVal.invalid">
+                                Please
+                                enter current amount</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="depositedOnStr">Deposited On:</label>
+                            <input type="date" class="form-control" id="depositedOnStr" placeholder="Select Deposited On"
+                                name="mutualfund.depositedOnStr" [(ngModel)]="mutualfund.depositedOnStr" #depOnVal="ngModel" required>
+
+                                <p class="text-danger" *ngIf="(depOnVal.touched || depOnVal.dirty) &&  depOnVal.invalid">
+                                Please
+                                select Deposited On</p>
+                        </div>
+                        <button type="button" class="btn btn-success" (click)="save(form)" [disabled]="form.invalid">
+                            <ng-container *ngIf="mutualfund.id">Update</ng-container>
+                            <ng-container *ngIf="!mutualfund.id">Add</ng-container>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>

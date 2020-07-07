@@ -15,9 +15,10 @@
 
         <div class="box-body">
             <div class="customwell well" *ngFor="let fd of fds;let sn=index">
+                <span *ngIf="fds" class="badge">{{sn+1}}</span>
                 <div class="row" >
                     <div class="col-md-12">
-                        <p><b>{{sn+1}}){{fd.bank}} <span *ngIf="fd.fdrNo">{{'- '+fd.fdrNo}}</span> </b>
+                        <p><b><span *ngIf="fd.fdrNo">{{fd.fdrNo}}</span> </b>
                             <i class="glyphicon glyphicon-trash pull-right"
                             (click)="delete(fd.id)" title="Delete"></i>
                             <i class="glyphicon glyphicon-edit pull-right" (click)="edit(fd)" title="Update"

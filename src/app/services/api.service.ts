@@ -10,8 +10,8 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
  
-  //  backendUrl:string="http://localhost:8080/api/";
-  backendUrl:string="https://pavanprasad.herokuapp.com/api/";
+   backendUrl:string="http://localhost:8080/api/";
+  // backendUrl:string="https://pavanprasad.herokuapp.com/api/";
 
   userToken:string=localStorage.getItem("userToken")!=null?localStorage.getItem("userToken"):"";
 

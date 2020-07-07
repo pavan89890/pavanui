@@ -25,6 +25,7 @@ import { DownloadDataComponent } from './download-data/download-data.component';
 import { EventsComponent } from './events/events.component';
 import { TodosComponent } from './todos/todos.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { MutualfundsComponent } from './mutualfunds/mutualfunds.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RegistrationComponent } from './registration/registration.component';
     DownloadDataComponent,
     EventsComponent,
     TodosComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    MutualfundsComponent
   ],
   imports: [
     BrowserModule,
