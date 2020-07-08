@@ -5,8 +5,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">Fds <span *ngIf="fds" class="badge">{{fds.length}}</span></h3>
             <span class="pull-right">
-                <span class="label label-success">{{totalDeposited | currency:'INR':true}} to {{totalMatured | currency:'INR':true}}</span>
-                &nbsp; &nbsp;<span class="label label-success">{{totalProfit | currency:'INR':true}}</span>
+                <span class="label label-success">{{totalDeposited | currency:'INR':'symbol'}} to {{totalMatured | currency:'INR'}}</span>
+                &nbsp; &nbsp;<span class="label label-success">{{totalProfit | currency:'INR'}}</span>
                 &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                     (click)="edit(null)">Add</button>
             </span>
@@ -15,7 +15,7 @@
 
         <div class="box-body">
             <div class="customwell well" *ngFor="let fd of fds;let sn=index">
-                <span *ngIf="fds" class="badge">{{sn+1}}</span>
+                <span *ngIf="fds" class="badge custombadge">{{sn+1}}</span>
                 <div class="row" >
                     <div class="col-md-12">
                         <p><b><span *ngIf="fd.fdrNo">{{fd.fdrNo}}</span> </b>
@@ -24,7 +24,9 @@
                             <i class="glyphicon glyphicon-edit pull-right" (click)="edit(fd)" title="Update"
                             data-toggle="modal" data-target="#myModal"></i>
                         </p>
-                        <p>{{fd.depAmount | currency:'INR':true}} to {{fd.maturedAmount | currency:'INR':true}} ( {{fd.profit | currency:'INR':true}} @ {{fd.roi}} % )</p>
+                        <hr>
+                        <p>{{fd.depAmount | currency:'INR'}} to {{fd.maturedAmount | currency:'INR'}}</p>
+                        <p>{{fd.profit | currency:'INR'}} @ {{fd.roi}} %</p>
                         <p>{{fd.depositedOnStr}} to {{fd.maturedOnStr}} ( {{fd.periodInMonths}} months )</p>
                         <p><span class="label label-success">{{fd.remainingTime}}</span></p>
                     </div>

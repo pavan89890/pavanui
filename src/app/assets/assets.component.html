@@ -6,14 +6,14 @@
       <div class="col-md-6">
         <div class="box box-widget widget-user-2">
           <div class="widget-user-header bg-green">
-            <h3 class="widget-user-username">Assets<span class="pull-right badge bg-yellow"><strong>{{totalBalance | currency:'INR':true}}</strong></span></h3>
+            <h3 class="widget-user-username">Assets<span class="pull-right badge bg-yellow"><strong>{{totalBalance | currency:'INR'}}</strong></span></h3>
           </div>
           <div class="box-footer no-padding">
             <ul class="nav nav-stacked">
-              <li><a [routerLink]="'/banks'">Banks <span class="pull-right badge bg-blue">{{bankBalance | currency:'INR':true}}</span></a></li>
-              <li><a [routerLink]="'/chits'">Chits <span class="pull-right badge bg-aqua">{{chitBalance | currency:'INR':true}}</span></a></li>
-              <li><a [routerLink]="'/fds'">Fds <span class="pull-right badge bg-red">{{fdBalance | currency:'INR':true}}</span></a></li>
-              <li><a [routerLink]="'/mfs'">Mutual Funds <span class="pull-right badge bg-green">{{mfBalance | currency:'INR':true}}</span></a></li>
+              <li><a [routerLink]="'/banks'">Banks <span class="pull-right badge bg-blue">{{bankBalance | currency:'INR'}}</span></a></li>
+              <li><a [routerLink]="'/chits'">Chits <span class="pull-right badge bg-aqua">{{chitBalance | currency:'INR'}}</span></a></li>
+              <li><a [routerLink]="'/fds'">Fds <span class="pull-right badge bg-red">{{fdBalance | currency:'INR'}}</span></a></li>
+              <li><a [routerLink]="'/mfs'">Mutual Funds <span class="pull-right badge bg-green">{{mfBalance | currency:'INR'}}</span></a></li>
             </ul>
           </div>
         </div>

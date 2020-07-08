@@ -5,8 +5,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">Mutual Funds <span *ngIf="mutualfunds" class="badge">{{mutualfunds.length}}</span></h3>
             <span class="pull-right">
-                <span class="label label-success">{{totalInvested | currency:'INR':true}} to {{totalCurrent | currency:'INR':true}}</span>
-                &nbsp;&nbsp;<span class="label label-success">{{totalProfitprofitOrLossAmount | currency:'INR':true}} @ {{totalProfitprofitOrLossPerc}}</span>
+                <span class="label label-success">{{totalInvested | currency:'INR'}} to {{totalCurrent | currency:'INR'}}</span>
+                &nbsp;&nbsp;<span class="label label-success">{{totalProfitprofitOrLossAmount | currency:'INR'}} @ {{totalProfitprofitOrLossPerc}} %</span>
                 &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                     (click)="edit(null)">Add</button>
             </span>
@@ -15,19 +15,21 @@
 
         <div class="box-body">
             <div class="customwell well" *ngFor="let mutualfund of mutualfunds;let sn=index">
-                <span *ngIf="mutualfunds" class="badge">{{sn+1}}</span>
+                <span *ngIf="mutualfunds" class="badge custombadge">{{sn+1}}</span>
                 <div class="row" >
                     <div class="col-md-12">
-                        <p><b><span *ngIf="mutualfund.name">{{mutualfund.name}}</span> </b>
-                            <i class="glyphicon glyphicon-trash pull-right"
+                        <p><i class="glyphicon glyphicon-trash pull-right"
                             (click)="delete(mutualfund.id)" title="Delete"></i>
                             <i class="glyphicon glyphicon-edit pull-right" (click)="edit(mutualfund)" title="Update"
-                            data-toggle="modal" data-target="#myModal"></i>
+                            data-toggle="modal" data-target="#myModal"></i></p>
+                        <p><b><span *ngIf="mutualfund.name">{{mutualfund.name}}</span> </b>
+                            
                         </p>
+                        <hr>
                         <p>{{mutualfund.desc}}</p>
                         <p>{{mutualfund.depositedOnStr}}</p>
-                        <p>{{mutualfund.investedAmount | currency:'INR':true}} to {{mutualfund.currentAmount | currency:'INR':true}}</p>
-                        <p><span [ngClass]="(mutualfund.profitOrLossAmount>0)?'label label-success':'label label-danger'">{{mutualfund.profitOrLossAmount | currency:'INR':true}} @ {{mutualfund.profitOrLossPerc}}  %</span></p>
+                        <p>{{mutualfund.investedAmount | currency:'INR'}} to {{mutualfund.currentAmount | currency:'INR'}}</p>
+                        <p><span [ngClass]="(mutualfund.profitOrLossAmount>0)?'label label-success':'label label-danger'">{{mutualfund.profitOrLossAmount | currency:'INR'}} @ {{mutualfund.profitOrLossPerc}}  %</span></p>
                     </div>
                     
                 </div>
