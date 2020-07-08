@@ -6,9 +6,9 @@
             <h3 class="box-title">Chits</h3>
             &nbsp;<span class="label label-success">{{noOfChitsPaid+" / "+noOfChits+" M"}}</span> 
             <span class="pull-right">
-                <span class="label label-success">{{totalAmountPaid}} / {{totalChitAmount}}</span>
+                <span class="label label-success">{{totalAmountPaid | currency:'INR':true}} / {{totalChitAmount | currency:'INR':true}}</span>
                 &nbsp;&nbsp;
-                P <span class="label label-success">{{totalProfit}}</span>
+                P <span class="label label-success">{{totalProfit | currency:'INR':true}}</span>
                 &nbsp;&nbsp;
             <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                 (click)="edit(null)">Add</button>
@@ -33,9 +33,9 @@
                         <td>{{sn+1}}</td>
                         <td>{{chit.monthStr}}</td>
                         <td>{{chit.year}}</td>
-                        <td>{{chit.actualAmount}}</td>
-                        <td>{{chit.paidAmount}}</td>
-                        <td>{{chit.profit}}</td>
+                        <td>{{chit.actualAmount | currency:'INR':true}}</td>
+                        <td>{{chit.paidAmount | currency:'INR':true}}</td>
+                        <td>{{chit.profit | currency:'INR':true}}</td>
                         <td><i class="glyphicon glyphicon-edit" (click)="edit(chit)" title="Update" data-toggle="modal"
                                 data-target="#myModal"></i><i class="glyphicon glyphicon-trash"
                                 (click)="delete(chit.id)" title="Delete"></i></td>

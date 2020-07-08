@@ -5,8 +5,8 @@
         <div class="box-header with-border">
             <h3 class="box-title">Mutual Funds <span *ngIf="mutualfunds" class="badge">{{mutualfunds.length}}</span></h3>
             <span class="pull-right">
-                <span class="label label-success">{{totalInvested}} to {{totalCurrent}}</span>
-                &nbsp;&nbsp;<span class="label label-success">{{totalProfitprofitOrLossAmount}} @ {{totalProfitprofitOrLossPerc}}</span>
+                <span class="label label-success">{{totalInvested | currency:'INR':true}} to {{totalCurrent | currency:'INR':true}}</span>
+                &nbsp;&nbsp;<span class="label label-success">{{totalProfitprofitOrLossAmount | currency:'INR':true}} @ {{totalProfitprofitOrLossPerc}}</span>
                 &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                     (click)="edit(null)">Add</button>
             </span>
@@ -26,8 +26,8 @@
                         </p>
                         <p>{{mutualfund.desc}}</p>
                         <p>{{mutualfund.depositedOnStr}}</p>
-                        <p>Rs.{{mutualfund.investedAmount}} to Rs.{{mutualfund.currentAmount}}</p>
-                        <p><span [ngClass]="(mutualfund.profitOrLossAmount>0)?'label label-success':'label label-danger'">{{mutualfund.profitOrLossAmount}} @ {{mutualfund.profitOrLossPerc}}  %</span></p>
+                        <p>{{mutualfund.investedAmount | currency:'INR':true}} to {{mutualfund.currentAmount | currency:'INR':true}}</p>
+                        <p><span [ngClass]="(mutualfund.profitOrLossAmount>0)?'label label-success':'label label-danger'">{{mutualfund.profitOrLossAmount | currency:'INR':true}} @ {{mutualfund.profitOrLossPerc}}  %</span></p>
                     </div>
                     
                 </div>

@@ -46,7 +46,7 @@
             <td>{{sn+1}}</td>
             <td>{{expense.expenseType}}</td>
             <td>{{expense.name}}</td>
-            <td>{{expense.amount}}</td>
+            <td>{{expense.amount | currency:'INR':true}}</td>
             <td>{{expense.expenseDateStr}}</td>
             <td><i class="glyphicon glyphicon-edit" (click)="edit(expense)" title="Update" data-toggle="modal"
                 data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(expense.id)"
