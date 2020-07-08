@@ -32,7 +32,6 @@
             <th style="width: 10px">#</th>
             <th>Event Type</th>
             <th>Event Name</th>
-            <th>Event Description</th>
             <th>Event Date</th>
             <th>Today</th>
             <th>Actions</th>
@@ -45,7 +44,6 @@
               <td>{{sn+1}}</td>
               <td>{{event.eventType}}</td>
               <td>{{event.eventName}}</td>
-              <td>{{event.eventDesc}}</td>
               <td>{{event.eventDateStr}}</td>
               <td>{{event.today?'Yes':'No'}}</td>
               <td style="white-space: nowrap;">
@@ -99,14 +97,6 @@
               [(ngModel)]="event.eventName" #eventNameVal="ngModel" required>
             <p class="text-danger" *ngIf="(eventNameVal.touched || eventNameVal.dirty) &&  eventNameVal.invalid">Please
               enter event name
-            </p>
-          </div>
-          <div class="form-group">
-            <label for="name">Event Description:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter event name" name="event.eventDesc"
-              [(ngModel)]="event.eventDesc" #eventDescVal="ngModel" required>
-            <p class="text-danger" *ngIf="(eventDescVal.touched || eventDescVal.dirty) &&  eventDescVal.invalid">Please
-              enter event description
             </p>
           </div>
           <div class="form-group">
