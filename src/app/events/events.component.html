@@ -33,7 +33,6 @@
             <th>Event Type</th>
             <th>Event Name</th>
             <th>Event Date</th>
-            <th>Today</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -45,7 +44,6 @@
               <td>{{event.eventType}}</td>
               <td>{{event.eventName}}</td>
               <td>{{event.eventDateStr}}</td>
-              <td>{{event.today?'Yes':'No'}}</td>
               <td style="white-space: nowrap;">
                 <i class="glyphicon glyphicon-edit" (click)="edit(event)" title="Update" data-toggle="modal"
                   data-target="#myModal">
