@@ -47,7 +47,7 @@
             <td>{{expense.expenseType}}</td>
             <td>{{expense.name}}</td>
             <td>{{expense.amount | currency:'INR'}}</td>
-            <td>{{expense.expenseDateStr}}</td>
+            <td>{{expense.expenseDate | date:'dd-MMM-yyyy'}}</td>
             <td><i class="glyphicon glyphicon-edit" (click)="edit(expense)" title="Update" data-toggle="modal"
                 data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(expense.id)"
                 title="Delete"></i></td>
@@ -107,9 +107,9 @@
                 enter amount</p>
             </div>
             <div class="form-group">
-              <label for="expenseDateStr">Date:</label>
-              <input type="date" class="form-control" id="expenseDateStr" placeholder="Select Date"
-                  name="fd.expenseDateStr" [(ngModel)]="expense.expenseDateStr" #expenseDateVal="ngModel" required>
+              <label for="expenseDate">Date:</label>
+              <input type="date" class="form-control" id="expenseDate" placeholder="Select Date"
+                  name="fd.expenseDate" [(ngModel)]="expense.expenseDate" #expenseDateVal="ngModel" required>
 
                   <p class="text-danger" *ngIf="(expenseDateVal.touched || expenseDateVal.dirty) &&  expenseDateVal.invalid">
                   Please

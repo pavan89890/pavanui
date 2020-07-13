@@ -27,7 +27,7 @@
                         </p>
                         <hr>
                         <p>{{mutualfund.desc}}</p>
-                        <p>{{mutualfund.depositedOnStr}}</p>
+                        <p>{{mutualfund.depositedOn | date:'dd-MMM-yyyy'}}</p>
                         <p>{{mutualfund.investedAmount | currency:'INR'}} to {{mutualfund.currentAmount | currency:'INR'}}</p>
                         <p><span [ngClass]="(mutualfund.profitOrLossAmount>0)?'label label-success':'label label-danger'">{{mutualfund.profitOrLossAmount | currency:'INR'}} @ {{mutualfund.profitOrLossPerc}}  %</span></p>
                     </div>
@@ -85,9 +85,9 @@
                                 enter current amount</p>
                         </div>
                         <div class="form-group">
-                            <label for="depositedOnStr">Deposited On:</label>
-                            <input type="date" class="form-control" id="depositedOnStr" placeholder="Select Deposited On"
-                                name="mutualfund.depositedOnStr" [(ngModel)]="mutualfund.depositedOnStr" #depOnVal="ngModel" required>
+                            <label for="depositedOn">Deposited On:</label>
+                            <input type="date" class="form-control" id="depositedOn" placeholder="Select Deposited On"
+                                name="mutualfund.depositedOn" [(ngModel)]="mutualfund.depositedOn" #depOnVal="ngModel" required>
 
                                 <p class="text-danger" *ngIf="(depOnVal.touched || depOnVal.dirty) &&  depOnVal.invalid">
                                 Please

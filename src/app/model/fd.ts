@@ -5,10 +5,9 @@ export class Fd {
     public depAmount:number;
     public roi:number;
     public matAmount:number;
-    public depositedOnStr:string;
-    public maturedOnStr:string;
+    public depositedOn:any;
+    public maturedOn:any;
     public periodInMonths:number;
-    public matOn:any;
     public rem:any;
     public createdOn:Date;
     public updatedOn:Date;

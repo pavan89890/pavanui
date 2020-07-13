@@ -3,6 +3,7 @@ import {ApiService} from '../services/api.service'
 import { Mutualfund } from '../model/mutualfund';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-mutualfunds',
@@ -17,7 +18,7 @@ export class MutualfundsComponent implements OnInit {
   totalProfitprofitOrLossAmount:number=0;
   totalProfitprofitOrLossPerc:number=0;
 
-  constructor(private apiService:ApiService) {
+  constructor(private apiService:ApiService,private datePipe:DatePipe) {
     
    }
 
@@ -31,6 +32,7 @@ export class MutualfundsComponent implements OnInit {
    edit(mutualfund:Mutualfund) {
      if (mutualfund) {
        this.mutualfund = mutualfund;
+       this.mutualfund.depositedOn = this.datePipe.transform(mutualfund.depositedOn, 'yyyy-MM-dd');
      } else {
        this.mutualfund = new Mutualfund();
      }

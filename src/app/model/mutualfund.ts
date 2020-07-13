@@ -5,7 +5,7 @@ export class Mutualfund {
     public depAmount:number;
     public investedAmount:number;
     public currentAmount:number;
-    public depositedOnStr:string;
+    public depositedOn:any;
     public profitOrLossAmount:number;
     public profitOrLossPerc:number;
     public createdOn:Date;

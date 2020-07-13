@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { NgForm } from '@angular/forms';
 import { Events } from '../model/events';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-events',
@@ -12,7 +13,7 @@ export class EventsComponent implements OnInit {
 
   url: string = "events"
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,private datePipe: DatePipe) { }
 
   event = new Events();
   events: Events[] = [];
@@ -24,6 +25,7 @@ export class EventsComponent implements OnInit {
   edit(event: Events) {
     if (event) {
       this.event = event;
+      this.event.eventDate = this.datePipe.transform(event.eventDate, 'yyyy-MM-dd');
     } else {
       this.event = new Events();
     }

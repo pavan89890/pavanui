@@ -5,5 +5,5 @@ export class Expense {
     public amount:number;
     public createdOn:Date;
     public updatedOn:Date;
-    public expenseDateStr:string;
+    public expenseDate:any;
 }

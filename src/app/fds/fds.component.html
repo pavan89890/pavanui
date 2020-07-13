@@ -27,7 +27,7 @@
                         <hr>
                         <p>{{fd.depAmount | currency:'INR'}} to {{fd.maturedAmount | currency:'INR'}}</p>
                         <p>{{fd.profit | currency:'INR'}} @ {{fd.roi}} %</p>
-                        <p>{{fd.depositedOnStr}} to {{fd.maturedOnStr}} ( {{fd.periodInMonths}} months )</p>
+                        <p>{{fd.depositedOn | date:'dd-MMM-yyyy'}} to {{fd.maturedOn | date:'dd-MMM-yyyy'}} ( {{fd.periodInMonths}} months )</p>
                         <p><span class="label label-success">{{fd.remainingTime}}</span></p>
                     </div>
                     
@@ -86,9 +86,9 @@
                                 roi</p>
                         </div>
                         <div class="form-group">
-                            <label for="depositedOnStr">Deposited On:</label>
-                            <input type="date" class="form-control" id="depositedOnStr" placeholder="Select Deposited On"
-                                name="fd.depositedOnStr" [(ngModel)]="fd.depositedOnStr" #depOnVal="ngModel" required>
+                            <label for="depositedOn">Deposited On:</label>
+                            <input type="date" class="form-control" id="depositedOn" placeholder="Select Deposited On"
+                                name="fd.depositedOn" [(ngModel)]="fd.depositedOn" #depOnVal="ngModel" required>
 
                                 <p class="text-danger" *ngIf="(depOnVal.touched || depOnVal.dirty) &&  depOnVal.invalid">
                                 Please

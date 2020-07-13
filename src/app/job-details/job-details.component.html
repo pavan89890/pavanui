@@ -23,8 +23,8 @@
                                     data-toggle="modal" data-target="#myModal"></i>
                                 </p>
                                 <p>{{jobDetail.company}}</p>
-                                <p *ngIf="jobDetail.dolStr">{{jobDetail.dojStr}} to {{jobDetail.dolStr}}</p>
-                                <p *ngIf="!jobDetail.dolStr">{{jobDetail.dojStr}} to present</p>
+                                <p *ngIf="jobDetail.dol">{{jobDetail.doj | date:'dd-MMM-yyyy'}} to {{jobDetail.dol | date:'dd-MMM-yyyy'}}</p>
+                                <p *ngIf="!jobDetail.dol">{{jobDetail.doj | date:'dd-MMM-yyyy'}} to present</p>
                                 <p><span class="label" [class.label-success]="jobDetail.current" [class.label-default]="!jobDetail.current">{{jobDetail.experience}}</span></p>
                             </div>
                             
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label for="doj">DOJ:</label>
                             <input type="date" class="form-control" id="doj" placeholder="Select doj"
-                                name="jobDetail.doj" [(ngModel)]="jobDetail.dojStr" #dojVal="ngModel" required>
+                                name="jobDetail.doj" [(ngModel)]="jobDetail.doj" #dojVal="ngModel" required>
                             <p class="text-danger" *ngIf="(dojVal.touched || dojVal.dirty) &&  dojVal.invalid">Please
                                 select
                                 doj</p>
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label for="dol">DOL:</label>
                             <input type="date" class="form-control" id="dol" placeholder="Select dol"
-                                name="jobDetail.dol" [(ngModel)]="jobDetail.dolStr">
+                                name="jobDetail.dol" [(ngModel)]="jobDetail.dol">
 
                         </div>
                         <div class="form-group">

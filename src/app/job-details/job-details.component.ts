@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { JobDetail } from '../model/job-detail';
 import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-job-details',
@@ -13,7 +14,7 @@ export class JobDetailsComponent implements OnInit {
   url:string="jobs";
   totalExperience:string;
 
-  constructor(private apiService:ApiService) {
+  constructor(private apiService:ApiService,private datePipe:DatePipe) {
     
    }
 
@@ -48,6 +49,8 @@ export class JobDetailsComponent implements OnInit {
   edit(jobDetail:JobDetail) {
     if (jobDetail) {
       this.jobDetail = jobDetail;
+      this.jobDetail.doj = this.datePipe.transform(jobDetail.doj, 'yyyy-MM-dd');
+      this.jobDetail.dol = this.datePipe.transform(jobDetail.dol, 'yyyy-MM-dd');
     } else {
       this.jobDetail = new JobDetail();
     }

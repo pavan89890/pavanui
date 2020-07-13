@@ -26,6 +26,7 @@ import { EventsComponent } from './events/events.component';
 import { TodosComponent } from './todos/todos.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MutualfundsComponent } from './mutualfunds/mutualfunds.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { MutualfundsComponent } from './mutualfunds/mutualfunds.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

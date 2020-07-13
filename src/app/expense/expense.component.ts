@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Expense } from '../model/expense';
 import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-expense',
@@ -11,7 +12,7 @@ import { NgForm } from '@angular/forms';
 export class ExpenseComponent implements OnInit {
   url: string = "expenses"
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,private datePipe:DatePipe) { }
 
   expense = new Expense();
   expenses: Expense[] = [];
@@ -24,6 +25,7 @@ export class ExpenseComponent implements OnInit {
   edit(expense: Expense) {
     if (expense) {
       this.expense = expense;
+      this.expense.expenseDate = this.datePipe.transform(expense.expenseDate, 'yyyy-MM-dd');
     } else {
       this.expense = new Expense();
     }

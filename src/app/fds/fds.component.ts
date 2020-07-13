@@ -3,6 +3,7 @@ import {ApiService} from '../services/api.service'
 import { Fd } from '../model/fd';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-fds',
@@ -18,7 +19,7 @@ export class FdsComponent implements OnInit {
   totalMatured:number=0;
   totalProfit:number=0;
 
-  constructor(private apiService:ApiService) {
+  constructor(private apiService:ApiService,private datePipe:DatePipe) {
     
    }
 
@@ -32,6 +33,7 @@ export class FdsComponent implements OnInit {
    edit(fd:Fd) {
      if (fd) {
        this.fd = fd;
+       this.fd.depositedOn = this.datePipe.transform(fd.depositedOn, 'yyyy-MM-dd');
      } else {
        this.fd = new Fd();
      }
