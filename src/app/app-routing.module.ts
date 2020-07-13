@@ -21,7 +21,7 @@ const routes: Routes = [
   {path:"dashboard",component:DashboardComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'login' , component: LoginComponent},
   {path: 'register' , component: RegistrationComponent},
-  {path: 'assets' , component: AssetsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
+  {path: 'savings' , component: AssetsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'job-details' , component: JobDetailsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'banks' , component: BanksComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'chits' , component: ChitsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
