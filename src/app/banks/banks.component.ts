@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Bank } from '../model/bank';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-banks',
@@ -19,8 +20,26 @@ export class BanksComponent implements OnInit {
   banks: Bank[] = [];
   totalBalance: number = 0;
 
+  dtOptions: any= {};
+  dtTrigger: Subject<any> = new Subject();
+
+  @ViewChild  (DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+
   ngOnInit() {
-   this.get();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      // Declare the use of the extension in the dom parameter
+      dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
+    this.get();
   }
   
   edit(bank: Bank) {
@@ -40,6 +59,7 @@ export class BanksComponent implements OnInit {
         this.banks=response.data.banks;
         this.totalBalance=response.data.totalBalance;
       }
+      this.rerender();
     })
   }
 
@@ -59,5 +79,23 @@ export class BanksComponent implements OnInit {
         this.get();
       });
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+  
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 }

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { NgForm } from '@angular/forms';
 import { Events } from '../model/events';
 import { DatePipe } from '@angular/common';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent implements OnInit {
+export class EventsComponent implements AfterViewInit,OnInit,OnDestroy {
 
   url: string = "events"
 
@@ -18,7 +20,25 @@ export class EventsComponent implements OnInit {
   event = new Events();
   events: Events[] = [];
 
+  dtOptions: any= {};
+  dtTrigger: Subject<any> = new Subject();
+
+  @ViewChild  (DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      // Declare the use of the extension in the dom parameter
+      dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
    this.get("");
   }
   
@@ -42,6 +62,7 @@ export class EventsComponent implements OnInit {
       if(response.data){
         this.events=response.data.events;
       }
+      this.rerender();
     })
   }
 
@@ -61,6 +82,24 @@ export class EventsComponent implements OnInit {
         this.get("");
       });
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+  
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
 }

@@ -27,6 +27,7 @@ import { TodosComponent } from './todos/todos.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MutualfundsComponent } from './mutualfunds/mutualfunds.component';
 import { DatePipe } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

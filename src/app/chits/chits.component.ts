@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Chit } from '../model/chit';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
-
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-chits',
@@ -27,9 +27,28 @@ export class ChitsComponent implements OnInit {
   chit=new Chit();
   chits:Chit[]=[];
   
-   ngOnInit() {
-    this.get();
-   }
+  dtOptions: any= {};
+  dtTrigger: Subject<any> = new Subject();
+
+  @ViewChild  (DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+
+  ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      // Declare the use of the extension in the dom parameter
+      dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
+   this.get();
+  }
+
    edit(chit:Chit) {
      if (chit) {
        this.chit = chit;
@@ -50,6 +69,7 @@ export class ChitsComponent implements OnInit {
          this.totalChitAmount=response.data.totalMatured;
          this.totalProfit=response.data.totalProfit;
        }
+       this.rerender();
      })
    }
  
@@ -71,4 +91,21 @@ export class ChitsComponent implements OnInit {
      }
    }
 
+   ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+  
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
 }

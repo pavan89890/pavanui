@@ -29,8 +29,8 @@
     </div>
     <!-- /.box-header --><br>
     <div class="box-body table-responsive no-padding">
-      <table 
-        class="table table-bordered table-striped" id="ExpensesTableId">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="table table-bordered table-striped">
         <thead>
          <tr>
             <th>S.No</th> 
