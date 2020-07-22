@@ -1,4 +1,6 @@
 export class Todo {
     public id:number;
-    public todoDesc:string;
+    public todo:string;
+    public priority:number;
+    public status:boolean=true;
 }

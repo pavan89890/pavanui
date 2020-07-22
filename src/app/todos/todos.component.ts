@@ -11,7 +11,7 @@ import { Todo } from '../model/todo';
 })
 export class TodosComponent implements OnInit {
 
-  url: string = "todos"
+  url: string = "todo"
 
   constructor(private apiService: ApiService) { }
 
