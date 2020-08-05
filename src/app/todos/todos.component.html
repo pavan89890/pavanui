@@ -4,7 +4,10 @@
   <div class="box box-success">
     <div class="box-header with-border">
       <i class="ion ion-clipboard"></i>
-      <h3 class="box-title">To Do List</h3>
+      <h3 class="box-title">To Do List
+        &nbsp;&nbsp;
+      <span class="label label-success" *ngIf="todos">{{todos.length}}</span>
+      </h3>
 
       <span class="pull-right">
         <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal" (click)="edit(null)"><i
