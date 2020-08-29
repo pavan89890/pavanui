@@ -20,6 +20,8 @@ export class ExpenseComponent implements AfterViewInit,OnInit,OnDestroy {
   expenses: Expense[] = [];
   totalExpenses: number = 0;
 
+  expenseCategories=["Credit","Clothing","Debit","Fuel","Food","Engagement","Entertainment","Gift","Marriage","Other","Personal","Transport"];
+
   dtOptions: any= {};
   dtTrigger: Subject<any> = new Subject();
 

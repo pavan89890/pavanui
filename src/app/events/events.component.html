@@ -17,10 +17,7 @@
       <div class="col-md-12"><div class="col-md-4">
               <select class="form-control" id="eventTypeFilter" #eventTypeFilter (change)="get(eventTypeFilter.value)">
               <option value="All">All</option>
-              <option value='Birthday'>Birthday</option>
-              <option value='Wedding Anniversary'>Wedding Anniversary</option>
-              <option value='Engagement Anniversary'>Engagement Anniversary</option>
-              <option value='Other'>Other</option>
+              <option *ngFor="let eventCategory of eventCategories" [ngValue]="eventCategory">{{eventCategory}}</option>
             </select>
       </div></div>
     </div>
@@ -79,13 +76,10 @@
             <label for="eventType">Select Event Type:</label>
             <select class="form-control" id="eventType" name="event.eventType" [(ngModel)]="event.eventType"
               #eventTypeVal="ngModel" required>
-              <option value="undefined">--Select Event Type--</option>
-              <option value='Birthday'>Birthday</option>
-              <option value='Wedding Anniversary'>Wedding Anniversary</option>
-              <option value='Engagement Anniversary'>Engagement Anniversary</option>
-              <option value='Other'>Other</option>
+              <option value='undefined'>--Select Event Type--</option>
+              <option *ngFor="let eventCategory of eventCategories" [ngValue]="eventCategory">{{eventCategory}}</option>
             </select>
-            <p class="text-danger" *ngIf="(eventTypeVal.touched || eventTypeVal.dirty) &&  eventTypeVal.invalid">
+            <p class="text-danger" *ngIf="(eventTypeVal.touched || eventTypeVal.dirty) &&  eventTypeVal=='undefined'">
               Please
               select event type</p>
           </div>

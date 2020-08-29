@@ -17,13 +17,7 @@
       <div class="col-md-12"><div class="col-md-4">
               <select class="form-control" id="expenseTypeFilter" #expenseTypeFilter (change)="get(expenseTypeFilter.value)">
               <option value="All">All</option>
-              <option value='Personal'>Personal</option>
-              <option value='Credit'>Credit</option>
-              <option value='Debit'>Debit</option>
-              <option value="Gift">Gift</option>
-              <option value='Engagement'>Engagement</option>
-              <option value='Marriage'>Marriage</option>
-              <option value='Other'>Other</option>
+              <option *ngFor="let expenseCategory of expenseCategories" [ngValue]="expenseCategory">{{expenseCategory}}</option>
             </select>
       </div></div>
     </div>
@@ -80,13 +74,7 @@
               <select class="form-control" id="expenseType" name="expense.expenseType" [(ngModel)]="expense.expenseType"
               #expenseTypeVal="ngModel" required>
               <option value="undefined">--Select Expense Type--</option>
-              <option value='Personal'>Personal</option>
-              <option value='Credit'>Credit</option>
-              <option value='Debit'>Debit</option>
-              <option value="Gift">Gift</option>
-              <option value='Engagement'>Engagement</option>
-              <option value='Marriage'>Marriage</option>
-              <option value='Other'>Other</option>
+              <option *ngFor="let expenseCategory of expenseCategories" [ngValue]="expenseCategory">{{expenseCategory}}</option>
             </select>
             <p class="text-danger" *ngIf="(expenseTypeVal.touched || expenseTypeVal.dirty) &&  expenseTypeVal.invalid">
               Please

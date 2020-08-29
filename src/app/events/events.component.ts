@@ -20,6 +20,8 @@ export class EventsComponent implements AfterViewInit,OnInit,OnDestroy {
   event = new Events();
   events: Events[] = [];
 
+  eventCategories=["Birthday","Wedding Anniversary","Engagement Anniversary","Other"];
+
   dtOptions: any= {};
   dtTrigger: Subject<any> = new Subject();
 
