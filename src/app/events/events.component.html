@@ -79,7 +79,7 @@
               <option value='undefined'>--Select Event Type--</option>
               <option *ngFor="let eventCategory of eventCategories" [ngValue]="eventCategory">{{eventCategory}}</option>
             </select>
-            <p class="text-danger" *ngIf="(eventTypeVal.touched || eventTypeVal.dirty) &&  eventTypeVal=='undefined'">
+            <p class="text-danger" *ngIf="(eventTypeVal.touched || eventTypeVal.dirty) &&  eventTypeVal.invalid">
               Please
               select event type</p>
           </div>
